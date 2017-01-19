@@ -26,9 +26,11 @@ class DeployService
 
     job_execution = JobExecution.new(deploy.reference, deploy.job, construct_env(stage))
     job_execution.on_start do
+      deploy.update_column(:started_at, Time.now)
       send_before_notifications(deploy)
     end
     job_execution.on_complete do
+      deploy.update_column(:finished_at, Time.now)
       send_after_notifications(deploy)
     end
 

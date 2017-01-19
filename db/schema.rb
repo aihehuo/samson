@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118172040) do
+ActiveRecord::Schema.define(version: 20170119044208) do
 
   create_table "builds", force: :cascade do |t|
     t.integer  "project_id",                                       null: false
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20170118172040) do
     t.integer  "project_id",                             null: false
     t.boolean  "kubernetes_rollback",    default: true,  null: false
     t.boolean  "kubernetes_reuse_build", default: false, null: false
+    t.datetime "finished_at"
     t.index ["build_id"], name: "index_deploys_on_build_id", using: :btree
     t.index ["deleted_at"], name: "index_deploys_on_deleted_at", using: :btree
     t.index ["job_id", "deleted_at"], name: "index_deploys_on_job_id_and_deleted_at", using: :btree

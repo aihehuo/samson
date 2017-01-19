@@ -100,12 +100,8 @@ class Deploy < ActiveRecord::Base
   end
 
   def confirm_buddy!(buddy)
-    update_attributes!(buddy: buddy, started_at: Time.now)
+    update_attributes!(buddy: buddy)
     start!
-  end
-
-  def start_time
-    started_at || created_at
   end
 
   def self.start_deploys_waiting_for_restart!
@@ -173,7 +169,7 @@ class Deploy < ActiveRecord::Base
 
   def csv_line
     [
-      id, project.name, summary, commit, job.status, updated_at, start_time, user.try(:name), user.try(:email),
+      id, project.name, summary, commit, job.status, updated_at, started_at, user.try(:name), user.try(:email),
       buddy_name, buddy_email, stage.name, stage.production?, !stage.no_code_deployed, project.deleted_at,
       stage.deploy_group_names.join('|')
     ]

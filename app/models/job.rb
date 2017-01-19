@@ -6,7 +6,8 @@ class Job < ActiveRecord::Base
   has_one :deploy
 
   # Used by status_panel
-  alias_attribute :start_time, :created_at
+  alias_attribute :started_at, :created_at
+  alias_attribute :finished_at, :updated_at
 
   after_update { deploy&.touch }
 
