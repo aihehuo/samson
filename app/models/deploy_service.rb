@@ -26,11 +26,9 @@ class DeployService
 
     job_execution = JobExecution.new(deploy.reference, deploy.job, construct_env(stage))
     job_execution.on_start do
-      deploy.update_column(:started_at, Time.now)
       send_before_notifications(deploy)
     end
     job_execution.on_complete do
-      deploy.update_column(:finished_at, Time.now)
       send_after_notifications(deploy)
     end
 
@@ -55,10 +53,13 @@ class DeployService
   end
 
   def latest_approved_deploy(reference, project)
-    Deploy.where(reference: reference).where('buddy_id is NOT NULL AND started_at > ?', BuddyCheck.grace_period.ago).
-      includes(:stage).
+    Deploy.
+      joins(:job).
+      where(reference: reference).
+      where('buddy_id is NOT NULL AND jobs.created_at > ?', BuddyCheck.grace_period.ago).
+      joins(:stage).
       where(stages: {project_id: project}).
-      reorder('started_at desc').
+      reorder('jobs.created_at desc').
       detect { |d| d.production? && !d.bypassed_approval? }
   end
 

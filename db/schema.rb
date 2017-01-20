@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170119044208) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "buddy_id"
-    t.datetime "started_at"
     t.datetime "deleted_at"
     t.integer  "build_id"
     t.boolean  "release",                default: false, null: false
@@ -92,7 +91,6 @@ ActiveRecord::Schema.define(version: 20170119044208) do
     t.integer  "project_id",                             null: false
     t.boolean  "kubernetes_rollback",    default: true,  null: false
     t.boolean  "kubernetes_reuse_build", default: false, null: false
-    t.datetime "finished_at"
     t.index ["build_id"], name: "index_deploys_on_build_id", using: :btree
     t.index ["deleted_at"], name: "index_deploys_on_deleted_at", using: :btree
     t.index ["job_id", "deleted_at"], name: "index_deploys_on_job_id_and_deleted_at", using: :btree

@@ -17,12 +17,12 @@ describe StatusHelper do
     end
 
     it "renders a weird deploy without started_at" do
-      deploy.started_at = nil
+      deploy.job.started_at = nil
       assert status_panel(deploy)
     end
 
     it "renders a weird deploy without finished_at" do
-      deploy.started_at = nil
+      deploy.job.finished_at = nil
       assert status_panel(deploy)
     end
 
