@@ -54,16 +54,8 @@ Dir[File.join(Bundler.root, 'plugins/*/')].each { |f| gemspec path: f }
 
 gem 'sucker_punch', '~> 2.0'
 
-group :mysql2 do
-  gem 'mysql2'
-end
-
 group :postgres do
   gem 'pg'
-end
-
-group :sqlite do
-  gem "sqlite3"
 end
 
 group :production, :staging do
