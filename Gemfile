@@ -101,6 +101,8 @@ end
 group :development, :deploy do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler', '~> 1.1.2'
 end
 
 group :development, :staging do

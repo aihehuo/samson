@@ -1,5 +1,5 @@
 set :deploy_to, "/mnt/app/#{fetch(:application)}_production"
-set :branch, "production"
+set :branch, "master"
 set :rails_env, "production"
 
 set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))

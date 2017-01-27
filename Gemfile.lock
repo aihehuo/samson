@@ -184,6 +184,9 @@ GEM
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
@@ -537,7 +540,9 @@ DEPENDENCIES
   brakeman
   bundler
   byebug
+  capistrano-bundler (~> 1.1.2)
   capistrano-rails
+  capistrano-rvm
   capistrano3-puma
   coderay
   concurrent-ruby
