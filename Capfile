@@ -20,5 +20,5 @@ require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/rails'
 #require "delayed/recipes"
-require 'capistrano3/puma'
 require "whenever/capistrano"
+require 'capistrano/puma'
